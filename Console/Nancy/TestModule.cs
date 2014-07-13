@@ -2,6 +2,7 @@
 using Nancy.ModelBinding;
 using System.Linq;
 using System;
+using System.Dynamic;
 
 namespace Console
 {
@@ -20,7 +21,7 @@ namespace Console
 						Description = x.Description
 					});
 
-					return all;
+					return Negotiate.WithModel(all).WithStatusCode(HttpStatusCode.OK);
 				}
 			};
 
@@ -36,7 +37,7 @@ namespace Console
 				}
 
 				if (test == null)
-					return parameters.name + " does not exists.";
+					return Negotiate.WithModel(new MessageResponse { Message = parameters.name + " does not exists." }).WithStatusCode(HttpStatusCode.NotFound);
 
 				var testResponse = new TestResponse {
 					Count = test.Name.Length,
@@ -45,7 +46,7 @@ namespace Console
 					Description = test.Description
 				};
 
-				return testResponse;
+				return Negotiate.WithModel(testResponse).WithStatusCode(HttpStatusCode.OK);
 			};
 
 			Post [""] = parameters => {
@@ -54,18 +55,18 @@ namespace Console
 				TestDb test = null;
 
 				if(string.IsNullOrWhiteSpace (dto.Name) || dto.Name.Any (x => x == ' '))
-					return "Name should not have white spaces.";
-
+					return Negotiate.WithModel(new MessageResponse { Message = "Name should not have white spaces." }).WithStatusCode(HttpStatusCode.BadRequest);
+					
 				if(dto.Name.Length > 10)
-					return "Name should not exceed 10 length.";
-
+					return Negotiate.WithModel(new MessageResponse { Message = "Name should not exceed 10 length." }).WithStatusCode(HttpStatusCode.BadRequest);
+					
 				using (var ctx = new TestCtx ()) {
 
 					test = ctx.Tests.SingleOrDefault (x => x.Name == dto.Name);
 
 					if (test != null)
-						return dto.Name + " already exists.";
-
+						return Negotiate.WithModel(new MessageResponse { Message = dto.Name + " already exists." }).WithStatusCode(HttpStatusCode.BadRequest);
+					
 					test = new TestDb {
 						Id = Guid.NewGuid(),
 						Name = dto.Name.ToLower(),
@@ -77,7 +78,7 @@ namespace Console
 					ctx.SaveChanges ();
 				}
 
-				return test;
+				return Negotiate.WithModel(test).WithStatusCode(HttpStatusCode.Created);
 			};
 		}
 	}
