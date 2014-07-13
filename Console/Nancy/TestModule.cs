@@ -7,9 +7,9 @@ namespace Console
 {
 	public class TestModule : NancyModule
 	{
-		public TestModule ()
+		public TestModule () : base("/nancy/test")
 		{
-			Get["/nancy/test"] = _ => {
+			Get[""] = _ => {
 
 				using (var ctx = new TestCtx ())
 				{
@@ -24,7 +24,7 @@ namespace Console
 				}
 			};
 
-			Get ["/nancy/test/{name}"] = parameters => {
+			Get ["{name}"] = parameters => {
 
 				string name = parameters.name;
 
@@ -48,7 +48,7 @@ namespace Console
 				return testResponse;
 			};
 
-			Post ["/nancy/test"] = parameters => {
+			Post [""] = parameters => {
 				var dto = this.Bind<TestPostDto>();
 
 				TestDb test = null;
