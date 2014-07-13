@@ -77,15 +77,26 @@
     <Reference Include="MySql.Data.Entity.EF6">
       <HintPath>..\packages\MySql.ConnectorNET.Entity.6.8.3.2\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.23.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Owin">
+      <HintPath>..\packages\Nancy.Owin.0.23.1\lib\net40\Nancy.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\Program.cs" />
-    <Compile Include="TestWeb.cs" />
-    <Compile Include="TestResponse.cs" />
-    <Compile Include="TestPostDto.cs" />
     <Compile Include="Ctx\TestCtx.cs" />
     <Compile Include="Ctx\TestDb.cs" />
+    <Compile Include="Nancy\TestModule.cs" />
+    <Compile Include="Dtos\TestPostDto.cs" />
+    <Compile Include="Dtos\TestResponse.cs" />
+    <Compile Include="WebApi\TestController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -95,5 +106,8 @@
   <ItemGroup>
     <Folder Include="App_Start\" />
     <Folder Include="Ctx\" />
+    <Folder Include="WebApi\" />
+    <Folder Include="Nancy\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
 </Project>

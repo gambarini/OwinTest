@@ -7,8 +7,8 @@ using System.Collections.Generic;
 
 namespace Console
 {
-	[RoutePrefix("Test")]
-	public class TestWebController : ApiController
+	[RoutePrefix("api/Test")]
+	public class TestController : ApiController
 	{
 		[HttpGet]
 		[Route("{name:maxlength(10)}")]

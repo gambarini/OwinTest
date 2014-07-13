@@ -30,6 +30,8 @@ namespace Console
 			config.EnsureInitialized ();
 
 			app.UseWebApi (config);
+			app.UseNancy ();
+
 
 			Database.SetInitializer<TestCtx>(null);
 		}
