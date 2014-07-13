@@ -49,7 +49,7 @@ namespace Console
 				return Negotiate.WithModel(testResponse).WithStatusCode(HttpStatusCode.OK);
 			};
 
-			Post [""] = parameters => {
+			Post [""] = _ => {
 				var dto = this.Bind<TestPostDto>();
 
 				TestDb test = null;
