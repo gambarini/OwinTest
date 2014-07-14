@@ -98,6 +98,7 @@
     <Compile Include="Dtos\TestResponse.cs" />
     <Compile Include="WebApi\TestController.cs" />
     <Compile Include="Dtos\MessageResponse.cs" />
+    <Compile Include="App_Start\Startup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
