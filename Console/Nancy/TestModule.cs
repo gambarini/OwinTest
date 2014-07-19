@@ -61,7 +61,7 @@ namespace Console
 					
 				using (var ctx = new TestCtx ()) {
 
-					test = ctx.Tests.SingleOrDefault (x => x.Name == dto.Name);
+					test = ctx.Tests.SingleOrDefault (x => x.Name == dto.Name.ToLower());
 
 					if (test != null)
 						return Negotiate.WithModel(new MessageResponse { Message = dto.Name + " already exists." }).WithStatusCode(HttpStatusCode.BadRequest);

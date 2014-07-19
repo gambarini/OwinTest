@@ -65,7 +65,7 @@ namespace Console
 
 			using (var ctx = new TestCtx ()) {
 
-				test = ctx.Tests.SingleOrDefault (x => x.Name == dto.Name);
+				test = ctx.Tests.SingleOrDefault (x => x.Name == dto.Name.ToLower());
 
 				if (test != null)
 					return Request.CreateErrorResponse (HttpStatusCode.BadRequest, dto.Name + " already exists.");
