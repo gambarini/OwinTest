@@ -5,7 +5,7 @@ namespace Console
 
 	class MainClass
 	{
-		const string HttpLocalHost = "http://localhost:9000";
+		const string HttpLocalHost = "http://*:9000";
 
 		public static void Main (string[] args)
 		{
